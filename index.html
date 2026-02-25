@@ -11,348 +11,120 @@
     <link rel="apple-touch-icon" href="alina.jpg">
     <title>С Днём Рождения, Алина!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         html, body {
             height: 100%;
-            margin: 0;
-            padding: 0;
+            width: 100%;
             overflow: hidden;
-            touch-action: manipulation;
+            position: fixed;
         }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 50%, #FF69B4 100%);
-            background-size: 200% 200%;
-            animation: gradientBG 5s ease infinite;
-            min-height: 100%;
-            min-height: -webkit-fill-available;
-            min-height: 100dvh;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-            height: 100%;
-            min-height: -webkit-fill-available;
-            min-height: 100dvh;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Блестки */
-        .sparkles {
+            background: linear-gradient(180deg, #FF69B4 0%, #FF1493 100%);
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: white;
-            border-radius: 50%;
-            animation: sparkle 2s ease-in-out infinite;
-            opacity: 0;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-        
-        /* Фейерверки */
-        .firework {
-            position: fixed;
-            width: 5px;
-            height: 5px;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .firework::before, .firework::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            animation: firework 1s ease-out infinite;
-        }
-        
-        @keyframes firework {
-            0% { transform: scale(0); opacity: 1; }
-            100% { transform: scale(3); opacity: 0; }
-        }
-            touch-action: manipulation;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #FF69B4 0%, #FF1493 50%, #FF69B4 100%);
-            background-size: 200% 200%;
-            animation: gradientBG 5s ease infinite;
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
-        }
-        
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Праздничные блестки */
-        .sparkles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-        
-        .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: white;
-            border-radius: 50%;
-            animation: sparkle 2s ease-in-out infinite;
-            opacity: 0;
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-            height: 100%;
-            overflow: hidden;
-            touch-action: manipulation;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
-            padding-top: env(safe-area-inset-top);
-            padding-bottom: env(safe-area-inset-bottom);
+            top: 0; left: 0; right: 0; bottom: 0;
         }
         
         .tab-container {
             display: flex;
+            width: 500vw;
             height: 100%;
-            width: 100%;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s ease;
         }
         
         .tab {
-            min-width: 100vw;
+            width: 100vw;
             height: 100%;
-            min-height: 100dvh;
             display: flex;
-            display: flex;
-            height: 100%;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .tab {
-            min-width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             padding: 20px;
-            background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
         }
         
         .tab-content {
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             width: 100%;
-            max-width: 600px;
-            position: relative;
-            z-index: 10;
-        }
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 600px;
+            max-width: 400px;
         }
         
         h1 {
-            font-size: clamp(1.5rem, 7vw, 2rem);
+            font-size: 1.8rem;
             color: white;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            padding: 0 10px;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         .buttons {
             display: flex;
-            gap: 20px;
+            gap: 30px;
             justify-content: center;
-            flex-wrap: wrap;
-            width: 100%;
-            padding: 0 20px;
         }
         
         button {
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
+            font-size: 1.5rem;
             font-weight: bold;
-            padding: 18px 40px;
+            padding: 20px 50px;
             border: none;
             border-radius: 15px;
+            color: white;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
-            transition: transform 0.2s, box-shadow 0.2s;
-            color: white;
-            min-width: 120px;
-            position: relative;
-            z-index: 10;
-        }
-            font-size: clamp(1.2rem, 5vw, 1.5rem);
-            font-weight: bold;
-            padding: 18px 40px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            color: white;
-            min-width: 120px;
         }
         
-        button:active {
-            transform: scale(0.95);
-        }
-        
-        .btn-yes {
-            background-color: #32CD32;
-        }
-        
-        .btn-no {
-            background-color: #FF4500;
-        }
+        button:active { transform: scale(0.95); }
+        .btn-yes { background-color: #32CD32; }
+        .btn-no { background-color: #FF4500; }
         
         .photo {
-            width: min(250px, 70vw);
-            height: min(250px, 70vw);
+            width: 220px;
+            height: 220px;
             border-radius: 20px;
-            margin: 15px 0;
             object-fit: cover;
             border: 4px solid white;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
         }
         
-        .video-wrapper {
+        .video-row {
             display: flex;
-            flex-direction: row;
             gap: 10px;
-            width: 100%;
             justify-content: center;
-            align-items: flex-start;
-            padding: 0 10px;
+            width: 100%;
         }
         
-        .video-wrapper video {
+        .video-row video {
             width: 48%;
-            max-height: 45vh;
-            aspect-ratio: 9/16;
+            max-height: 40vh;
             border-radius: 12px;
             background: black;
-            object-fit: cover;
         }
         
-        .congrats {
-            text-align: center;
-            padding: 0 15px;
-        }
-        
-        .congrats h1 {
-            font-size: clamp(1.8rem, 8vw, 2.5rem);
-        }
-        
-        .congrats .name {
-            font-size: clamp(2rem, 10vw, 3rem);
-            color: #FFD700;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            margin: 10px 0;
-        }
-        
-        .congrats p {
-            font-size: clamp(1rem, 4vw, 1.3rem);
-            color: white;
-            margin-top: 20px;
-            line-height: 1.6;
-            white-space: pre-line;
-        }
-        
-        .gift-icon {
-            font-size: clamp(3rem, 15vw, 5rem);
-            margin-bottom: 15px;
-        }
-        
-        .flower-btn {
-            background-color: #32CD32;
-            margin-top: 30px;
-        }
+        .congrats h1 { font-size: 2.2rem; }
+        .congrats .name { font-size: 2.8rem; color: #FFD700; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); margin: 10px 0; }
+        .congrats p { font-size: 1.1rem; color: white; margin-top: 20px; line-height: 1.5; }
+        .gift-icon { font-size: 4rem; margin-bottom: 10px; }
+        .flower-btn { background-color: #32CD32; margin-top: 30px; }
         
         .flower {
             position: fixed;
             font-size: 2rem;
             animation: fall 5s linear forwards;
-            z-index: 9999;
+            z-index: 1000;
             pointer-events: none;
         }
         
         @keyframes fall {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
         
-        .tab-indicator {
+        .dots {
             position: fixed;
-            bottom: max(20px, env(safe-area-inset-bottom));
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -360,78 +132,35 @@
             z-index: 100;
         }
         
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            transition: background 0.3s;
-        }
-        
-        .dot.active {
-            background: white;
-        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); }
+        .dot.active { background: white; }
         
         .error-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
-            padding: 20px;
+            z-index: 2000;
         }
         
-        .error-overlay.show {
-            display: flex;
-        }
+        .error-overlay.show { display: flex; }
+        .error-box { background: white; padding: 30px; border-radius: 20px; text-align: center; }
+        .error-box h2 { color: #FF4500; margin-bottom: 15px; }
+        .error-box p { color: #333; margin-bottom: 20px; }
+        .error-box button { background-color: #FF69B4; padding: 10px 30px; font-size: 1rem; }
         
-        .error-box {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 350px;
-            width: 100%;
-        }
-        
-        .error-box h2 {
-            color: #FF4500;
-            margin-bottom: 15px;
-        }
-        
-        .error-box p {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        .error-box button {
-            background-color: #FF69B4;
-            padding: 12px 30px;
-            font-size: 1rem;
-        }
-        
-        @media (max-width: 500px) {
-            .video-wrapper {
-                gap: 6px;
-                padding: 0 5px;
-            }
-            .video-wrapper video {
-                width: 48%;
-                max-height: 40vh;
-                border-radius: 8px;
-            }
+        @media (max-width: 400px) {
+            .video-row { flex-direction: column; }
+            .video-row video { width: 100%; }
+            h1 { font-size: 1.5rem; }
+            button { padding: 15px 35px; font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
-    <div class="sparkles" id="sparkles"></div>
-    <div class="tab-container" id="tabContainer">
-    <div class="tab-container" id="tabContainer">
+    <div class="tab-container" id="container">
         <div class="tab">
             <div class="tab-content">
                 <h1>Ты Алина?</h1>
@@ -455,7 +184,7 @@
         <div class="tab">
             <div class="tab-content">
                 <h1>Ты ли на фото?</h1>
-                <img src="alina.jpg" alt="Фото" class="photo">
+                <img src="alina.jpg" class="photo">
                 <div class="buttons">
                     <button class="btn-yes" onclick="nextTab()">Да</button>
                     <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
@@ -466,16 +195,16 @@
         <div class="tab">
             <div class="tab-content">
                 <h1>Смотри видео!</h1>
-                <p style="color: white; margin-bottom: 15px;">Да да ты там есть )</p>
-                <div class="video-wrapper">
-                    <video id="video1" controls playsinline preload="metadata" poster="poster1.jpg" onended="checkVideos()">
+                <p style="color:white;margin-bottom:15px;">Да да ты там есть )</p>
+                <div class="video-row">
+                    <video id="v1" controls playsinline poster="poster1.jpg">
                         <source src="IMG_3074_final.mp4" type="video/mp4">
                     </video>
-                    <video id="video2" controls playsinline preload="metadata" poster="poster2.jpg" onended="checkVideos()">
+                    <video id="v2" controls playsinline poster="poster2.jpg">
                         <source src="IMG_1731_final.mp4" type="video/mp4">
                     </video>
                 </div>
-                <div id="smiledQuestion" style="display: none; margin-top: 20px;">
+                <div id="smile" style="display:none;margin-top:20px;">
                     <h1>Улыбнулась ?</h1>
                     <div class="buttons">
                         <button class="btn-yes" onclick="nextTab()">Да</button>
@@ -503,129 +232,67 @@
         </div>
     </div>
     
-    <div class="error-overlay" id="errorOverlay">
+    <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+    
+    <div class="error-overlay" id="error">
         <div class="error-box">
             <h2>Ошибка!</h2>
-            <p id="errorMessage"></p>
+            <p id="errMsg"></p>
             <button onclick="hideError()">ОК</button>
         </div>
     </div>
     
-    <div class="tab-indicator">
-        <div class="dot active" data-tab="0"></div>
-        <div class="dot" data-tab="1"></div>
-        <div class="dot" data-tab="2"></div>
-        <div class="dot" data-tab="3"></div>
-        <div class="dot" data-tab="4"></div>
-    </div>
-    
     <script>
-        let currentTab = 0;
-        const totalTabs = 5;
+        let tab = 0;
+        let v1 = false, v2 = false;
         
-        let video1Watched = false;
-        let video2Watched = false;
+        document.getElementById('v1').addEventListener('ended', function() { v1 = true; checkBoth(); });
+        document.getElementById('v2').addEventListener('ended', function() { v2 = true; checkBoth(); });
         
-        function checkVideos() {
-            const video1 = document.getElementById('video1');
-            const video2 = document.getElementById('video2');
-            
-            if (video1.ended) video1Watched = true;
-            if (video2.ended) video2Watched = true;
-            
-            if (video1Watched && video2Watched) {
-                document.getElementById('smiledQuestion').style.display = 'block';
-            }
-        }
-        
-        function updateTabs() {
-            document.getElementById('tabContainer').style.transform = 
-                `translateX(-${currentTab * 100}vw)`;
-            
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentTab);
-            });
-            
-            if (currentTab === 4) {
-                setTimeout(() => showFlowers(), 500);
-            }
+        function checkBoth() {
+            if (v1 && v2) document.getElementById('smile').style.display = 'block';
         }
         
         function nextTab() {
-            if (currentTab < totalTabs - 1) {
-                currentTab++;
-                updateTabs();
+            if (tab < 4) {
+                tab++;
+                document.getElementById('container').style.transform = 'translateX(-' + (tab * 100) + 'vw)';
+                document.querySelectorAll('.dot')[tab].classList.add('active');
+                document.querySelectorAll('.dot')[tab-1].classList.remove('active');
+                if (tab === 4) showFlowers();
             }
         }
         
-        function showError(message) {
-            document.getElementById('errorMessage').textContent = message;
-            document.getElementById('errorOverlay').classList.add('show');
+        function showError(msg) {
+            document.getElementById('errMsg').textContent = msg;
+            document.getElementById('error').classList.add('show');
         }
         
         function hideError() {
-            document.getElementById('errorOverlay').classList.remove('show');
+            document.getElementById('error').classList.remove('show');
         }
         
         function showFlowers() {
-            const flowers = ['🌸', '🌺', '🌹', '🌻', '🌷', '💐', '✨', '💖'];
-            const colors = ['#FF69B4', '#FF1493', '#FFB6C1', '#FFD700', '#FF6347', '#DA70D6'];
-            
+            const f = ['🌸','🌺','🌹','🌻','🌷','💐','✨','💖'];
+            const c = ['#FF69B4','#FF1493','#FFB6C1','#FFD700','#FF6347'];
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
-                    const flower = document.createElement('div');
-                    flower.className = 'flower';
-                    flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
-                    flower.style.left = Math.random() * 100 + 'vw';
-                    flower.style.color = colors[Math.floor(Math.random() * colors.length)];
-                    flower.style.animationDuration = (3 + Math.random() * 3) + 's';
-                    document.body.appendChild(flower);
-                    
-                    setTimeout(() => {
-                        flower.remove();
-                    }, 6000);
+                    const d = document.createElement('div');
+                    d.className = 'flower';
+                    d.textContent = f[Math.floor(Math.random() * f.length)];
+                    d.style.left = Math.random() * 100 + 'vw';
+                    d.style.color = c[Math.floor(Math.random() * c.length)];
+                    document.body.appendChild(d);
+                    setTimeout(() => d.remove(), 5000);
                 }, i * 150);
             }
         }
-        
-        // Праздничные блестки
-        function createSparkles() {
-            const container = document.getElementById('sparkles');
-            const colors = ['#FFD700', '#FF69B4', '#FF1493', '#FFFFFF', '#FFE4E1'];
-            for (let i = 0; i < 30; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                sparkle.style.animationDelay = Math.random() * 2 + 's';
-                sparkle.style.width = (3 + Math.random() * 4) + 'px';
-                sparkle.style.height = sparkle.style.width;
-                container.appendChild(sparkle);
-            }
-        }
-        
-        updateTabs();
-        createSparkles();
-        
-        updateTabs();
-        createSparkles();
-        
-        // Фейерверки
-        function createFireworks() {
-            const colors = ['#FFD700', '#FF69B4', '#FF1493', '#00FF00', '#00BFFF', '#FF4500'];
-            for (let i = 0; i < 5; i++) {
-                const firework = document.createElement('div');
-                firework.className = 'firework';
-                firework.style.left = (20 + Math.random() * 60) + '%';
-                firework.style.top = (10 + Math.random() * 30) + '%';
-                firework.style.background = colors[Math.floor(Math.random() * colors.length)];
-                firework.style.boxShadow = `0 0 10px ${firework.style.background}, 0 0 20px ${firework.style.background}`;
-                firework.style.animationDelay = (Math.random() * 2) + 's';
-                document.body.appendChild(firework);
-            }
-        }
-        createFireworks();
         
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js');
