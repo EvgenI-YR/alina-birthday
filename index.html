@@ -2,118 +2,160 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#FF69B4">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Алина Birthday">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="alina.jpg">
     <title>С Днём Рождения, Алина!</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html, body {
             height: 100%;
             width: 100%;
             overflow: hidden;
-            position: fixed;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(180deg, #FF69B4 0%, #FF1493 100%);
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, #FF69B4 0%, #FF1493 50%, #C71585 100%);
+            color: white;
         }
         
-        .tab-container {
+        .container {
             display: flex;
-            width: 500vw;
+            width: 500%;
             height: 100%;
             transition: transform 0.4s ease;
         }
         
         .tab {
-            width: 100vw;
+            width: 20%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
             padding: 20px;
-        }
-        
-        .tab-content {
             text-align: center;
-            width: 100%;
-            max-width: 400px;
         }
         
         h1 {
             font-size: 1.8rem;
-            color: white;
             margin-bottom: 40px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
-        .buttons {
+        .btn-group {
             display: flex;
-            gap: 30px;
-            justify-content: center;
+            gap: 25px;
         }
         
-        button {
-            font-size: 1.5rem;
+        .btn {
+            font-size: 1.4rem;
             font-weight: bold;
-            padding: 20px 50px;
+            padding: 18px 45px;
             border: none;
-            border-radius: 15px;
+            border-radius: 50px;
             color: white;
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         
-        button:active { transform: scale(0.95); }
-        .btn-yes { background-color: #32CD32; }
-        .btn-no { background-color: #FF4500; }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        
+        .btn-yes { background: linear-gradient(135deg, #32CD32, #228B22); }
+        .btn-no { background: linear-gradient(135deg, #FF4500, #DC143C); }
+        .btn-flower { 
+            background: linear-gradient(135deg, #32CD32, #228B22);
+            margin-top: 30px;
+        }
         
         .photo {
-            width: 220px;
-            height: 220px;
-            border-radius: 20px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
             object-fit: cover;
-            border: 4px solid white;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
+            border: 5px solid white;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+            margin-bottom: 25px;
         }
         
-        .video-row {
+        .video-box {
             display: flex;
             gap: 10px;
-            justify-content: center;
             width: 100%;
+            max-width: 350px;
+            justify-content: center;
         }
         
-        .video-row video {
+        .video-box video {
             width: 48%;
-            max-height: 40vh;
-            border-radius: 12px;
-            background: black;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
         
-        .congrats h1 { font-size: 2.2rem; }
-        .congrats .name { font-size: 2.8rem; color: #FFD700; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); margin: 10px 0; }
-        .congrats p { font-size: 1.1rem; color: white; margin-top: 20px; line-height: 1.5; }
         .gift-icon { font-size: 4rem; margin-bottom: 10px; }
-        .flower-btn { background-color: #32CD32; margin-top: 30px; }
+        .name { font-size: 2.5rem; color: #FFD700; text-shadow: 3px 3px 6px rgba(0,0,0,0.3); margin: 10px 0; }
+        .text { font-size: 1.1rem; line-height: 1.6; margin-top: 15px; white-space: pre-line; }
+        
+        .dots {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+        }
+        
+        .dot.active { background: white; }
+        
+        .error-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .error-bg.show { display: flex; }
+        
+        .error-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 300px;
+        }
+        
+        .error-box h2 { color: #FF4500; margin-bottom: 15px; }
+        .error-box p { color: #333; margin-bottom: 20px; }
+        .error-box button { 
+            background: linear-gradient(135deg, #FF69B4, #FF1493); 
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
         
         .flower {
             position: fixed;
             font-size: 2rem;
             animation: fall 5s linear forwards;
-            z-index: 1000;
+            z-index: 500;
             pointer-events: none;
         }
         
@@ -122,148 +164,94 @@
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
         
-        /* Маленькие фейерверки */
-        .fw {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 5;
-            animation: fw 1.5s ease-out forwards;
-        }
-        
-        @keyframes fw {
-            0% { transform: scale(0); opacity: 1; box-shadow: 0 0 10px currentColor; }
-            100% { transform: scale(4); opacity: 0; box-shadow: 0 0 20px currentColor; }
-        }
-        
-        /* Смайлики */
         .emoji {
             position: fixed;
             font-size: 1.5rem;
+            animation: floatUp 3s ease-out forwards;
+            z-index: 500;
             pointer-events: none;
-            z-index: 5;
-            animation: emoji 3s ease-out forwards;
-            opacity: 0;
         }
         
-        @keyframes emoji {
+        @keyframes floatUp {
             0% { opacity: 1; transform: translateY(0) scale(0.5); }
-            50% { opacity: 1; transform: translateY(-30px) scale(1.2); }
-            100% { opacity: 0; transform: translateY(-100px) scale(1); }
+            50% { opacity: 1; transform: translateY(-40px) scale(1.2); }
+            100% { opacity: 0; transform: translateY(-120px) scale(1); }
         }
-            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-        }
-        
-        .dots {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 100;
-        }
-        
-        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); }
-        .dot.active { background: white; }
-        
-        .error-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-        
-        .error-overlay.show { display: flex; }
-        .error-box { background: white; padding: 30px; border-radius: 20px; text-align: center; }
-        .error-box h2 { color: #FF4500; margin-bottom: 15px; }
-        .error-box p { color: #333; margin-bottom: 20px; }
-        .error-box button { background-color: #FF69B4; padding: 10px 30px; font-size: 1rem; }
         
         @media (max-width: 400px) {
-            .video-row { flex-direction: column; }
-            .video-row video { width: 100%; }
-            h1 { font-size: 1.5rem; }
-            button { padding: 15px 35px; font-size: 1.2rem; }
+            h1 { font-size: 1.4rem; }
+            .btn { padding: 14px 30px; font-size: 1.2rem; }
+            .photo { width: 160px; height: 160px; }
+            .video-box { flex-direction: column; }
+            .video-box video { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <div class="tab-container" id="container">
+    <div class="container" id="container">
+        <!-- Tab 1 -->
         <div class="tab">
-            <div class="tab-content">
-                <h1>Ты Алина?</h1>
-                <div class="buttons">
-                    <button class="btn-yes" onclick="nextTab()">Да</button>
-                    <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
+            <h1>Ты Алина?</h1>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="nextTab()">Да</button>
+                <button class="btn btn-no" onclick="showErr('Подумай!!!???')">Нет</button>
+            </div>
+        </div>
+        
+        <!-- Tab 2 -->
+        <div class="tab">
+            <h1>Сегодня день рождения у тебя?</h1>
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="nextTab()">Да</button>
+                <button class="btn btn-no" onclick="showErr('Подумай!!!???')">Нет</button>
+            </div>
+        </div>
+        
+        <!-- Tab 3 -->
+        <div class="tab">
+            <h1>Ты ли на фото?</h1>
+            <img src="alina.jpg" class="photo">
+            <div class="btn-group">
+                <button class="btn btn-yes" onclick="nextTab()">Да</button>
+                <button class="btn btn-no" onclick="showErr('Подумай!!!???')">Нет</button>
+            </div>
+        </div>
+        
+        <!-- Tab 4 -->
+        <div class="tab">
+            <h1>Смотри видео!</h1>
+            <p style="margin-bottom:15px;opacity:0.9;">Да да ты там есть )</p>
+            <div class="video-box">
+                <video id="v1" controls playsinline poster="poster1.jpg" onended="checkV1()">
+                    <source src="IMG_3074_final.mp4" type="video/mp4">
+                </video>
+                <video id="v2" controls playsinline poster="poster2.jpg" onended="checkV2()">
+                    <source src="IMG_1731_final.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div id="smileBox" style="display:none;margin-top:25px;">
+                <h1>Улыбнулась ?</h1>
+                <div class="btn-group">
+                    <button class="btn btn-yes" onclick="nextTab()">Да</button>
+                    <button class="btn btn-no" onclick="showErr('Подумай!!!???')">Нет</button>
                 </div>
             </div>
         </div>
         
+        <!-- Tab 5 -->
         <div class="tab">
-            <div class="tab-content">
-                <h1>Сегодня день рождения у тебя?</h1>
-                <div class="buttons">
-                    <button class="btn-yes" onclick="nextTab()">Да</button>
-                    <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tab">
-            <div class="tab-content">
-                <h1>Ты ли на фото?</h1>
-                <img src="alina.jpg" class="photo">
-                <div class="buttons">
-                    <button class="btn-yes" onclick="nextTab()">Да</button>
-                    <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tab">
-            <div class="tab-content">
-                <h1>Смотри видео!</h1>
-                <p style="color:white;margin-bottom:15px;">Да да ты там есть )</p>
-                <div class="video-row">
-                    <video id="v1" controls playsinline poster="poster1.jpg">
-                        <source src="IMG_3074_final.mp4" type="video/mp4">
-                    </video>
-                    <video id="v2" controls playsinline poster="poster2.jpg">
-                        <source src="IMG_1731_final.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div id="smile" style="display:none;margin-top:20px;">
-                    <h1>Улыбнулась ?</h1>
-                    <div class="buttons">
-                        <button class="btn-yes" onclick="nextTab()">Да</button>
-                        <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tab">
-            <div class="tab-content congrats">
-                <div class="gift-icon">🎁</div>
-                <h1>С Днём Рождения!</h1>
-                <div class="name">Алина!</div>
-                <p>Алинка, знаю я тебе не долга, но понял одно ты умеешь удивлять))
+            <div class="gift-icon">🎁</div>
+            <h1>С Днём Рождения!</h1>
+            <div class="name">Алина!</div>
+            <div class="text">Алинка, знаю я тебе не долга, но понял одно ты умеешь удивлять))
 
 хочу тебя поздравить с Днём рождения, да да твой день )
 
 желать ничего тут не надо, а только сказать Алин добейся своих целей, 
 цени людей которые помогают тебе, а так же люби саму себя !!!!
 
-Ещё раз с днём рождения</p>
-                <button class="flower-btn" onclick="showFlowers()">Получить цветы 💐</button>
-            </div>
+Ещё раз с днём рождения</div>
+            <button class="btn btn-flower" onclick="showFX()">Получить цветы 💐</button>
         </div>
     </div>
     
@@ -275,48 +263,49 @@
         <div class="dot"></div>
     </div>
     
-    <div class="error-overlay" id="error">
-        <div class="error-box">
+    <div class="error-bg" id="errorBg" onclick="hideErr()">
+        <div class="error-box" onclick="event.stopPropagation()">
             <h2>Ошибка!</h2>
             <p id="errMsg"></p>
-            <button onclick="hideError()">ОК</button>
+            <button class="btn" onclick="hideErr()">ОК</button>
         </div>
     </div>
     
     <script>
         let tab = 0;
-        let v1 = false, v2 = false;
+        let v1Done = false, v2Done = false;
         
-        document.getElementById('v1').addEventListener('ended', function() { v1 = true; checkBoth(); });
-        document.getElementById('v2').addEventListener('ended', function() { v2 = true; checkBoth(); });
+        function checkV1() { v1Done = true; checkBoth(); }
+        function checkV2() { v2Done = true; checkBoth(); }
         
         function checkBoth() {
-            if (v1 && v2) document.getElementById('smile').style.display = 'block';
+            if (v1Done && v2Done) document.getElementById('smileBox').style.display = 'block';
         }
         
         function nextTab() {
             if (tab < 4) {
                 tab++;
-                document.getElementById('container').style.transform = 'translateX(-' + (tab * 100) + 'vw)';
+                document.getElementById('container').style.transform = 'translateX(-' + (tab * 20) + '%)';
                 document.querySelectorAll('.dot')[tab].classList.add('active');
-                document.querySelectorAll('.dot')[tab-1].classList.remove('active');
-                if (tab === 4) showFlowers();
+                if (tab > 0) document.querySelectorAll('.dot')[tab-1].classList.remove('active');
+                if (tab === 4) showFX();
             }
         }
         
-        function showError(msg) {
+        function showErr(msg) {
             document.getElementById('errMsg').textContent = msg;
-            document.getElementById('error').classList.add('show');
+            document.getElementById('errorBg').classList.add('show');
         }
         
-        function hideError() {
-            document.getElementById('error').classList.remove('show');
+        function hideErr() {
+            document.getElementById('errorBg').classList.remove('show');
         }
         
-        function showFlowers() {
+        function showFX() {
+            // Цветы
             const f = ['🌸','🌺','🌹','🌻','🌷','💐','✨','💖'];
             const c = ['#FF69B4','#FF1493','#FFB6C1','#FFD700','#FF6347'];
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 40; i++) {
                 setTimeout(() => {
                     const d = document.createElement('div');
                     d.className = 'flower';
@@ -325,48 +314,21 @@
                     d.style.color = c[Math.floor(Math.random() * c.length)];
                     document.body.appendChild(d);
                     setTimeout(() => d.remove(), 5000);
-                }, i * 150);
+                }, i * 100);
             }
-            // Фейерверки
-            const colors = ['#FFD700', '#FF69B4', '#00FF00', '#00BFFF', '#FF4500'];
-            for (let i = 0; i < 15; i++) {
-                setTimeout(() => {
-                    const fw = document.createElement('div');
-                    fw.className = 'fw';
-                    fw.style.left = (10 + Math.random() * 80) + '%';
-                    fw.style.top = (10 + Math.random() * 40) + '%';
-                    fw.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    fw.style.color = fw.style.background;
-                    document.body.appendChild(fw);
-                    setTimeout(() => fw.remove(), 1500);
-                }, i * 200);
-            }
+            
             // Смайлики
-            const emojis = ['😊','😄','🥰','😍','🤗','💕','🎉','🎊'];
-            for (let i = 0; i < 20; i++) {
+            const e = ['😊','😄','🥰','😍','🤗','💕','🎉','🎊'];
+            for (let i = 0; i < 25; i++) {
                 setTimeout(() => {
                     const em = document.createElement('div');
                     em.className = 'emoji';
-                    em.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    em.textContent = e[Math.floor(Math.random() * e.length)];
                     em.style.left = (Math.random() * 80 + 10) + '%';
-                    em.style.top = (60 + Math.random() * 30) + '%';
+                    em.style.top = (50 + Math.random() * 40) + '%';
                     document.body.appendChild(em);
                     setTimeout(() => em.remove(), 3000);
-                }, i * 150);
-            }
-        }
-            const f = ['🌸','🌺','🌹','🌻','🌷','💐','✨','💖'];
-            const c = ['#FF69B4','#FF1493','#FFB6C1','#FFD700','#FF6347'];
-            for (let i = 0; i < 30; i++) {
-                setTimeout(() => {
-                    const d = document.createElement('div');
-                    d.className = 'flower';
-                    d.textContent = f[Math.floor(Math.random() * f.length)];
-                    d.style.left = Math.random() * 100 + 'vw';
-                    d.style.color = c[Math.floor(Math.random() * c.length)];
-                    document.body.appendChild(d);
-                    setTimeout(() => d.remove(), 5000);
-                }, i * 150);
+                }, i * 120);
             }
         }
         
