@@ -1,0 +1,18 @@
+{
+  "name": "С Днём Рождения, Алина!",
+  "short_name": "Алина Birthday",
+  "description": "Поздравление для Алины",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FF69B4",
+  "theme_color": "#FF69B4",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "alina.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

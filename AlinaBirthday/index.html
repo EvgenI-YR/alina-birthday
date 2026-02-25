@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#FF69B4">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Алина Birthday">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="alina.jpg">
+    <title>С Днём Рождения, Алина!</title>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения, Алина!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+        }
+        
+        .tab-container {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        
+        .tab {
+            min-width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
+        }
+        
+        .tab-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        button {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: white;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-yes {
+            background-color: #32CD32;
+        }
+        
+        .btn-no {
+            background-color: #FF4500;
+        }
+        
+        .error-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .error-overlay.show {
+            display: flex;
+        }
+        
+        .error-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        .error-box h2 {
+            color: #FF4500;
+            margin-bottom: 15px;
+        }
+        
+        .error-box p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .error-box button {
+            background-color: #FF69B4;
+            padding: 10px 30px;
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .congrats {
+            text-align: center;
+        }
+        
+        .congrats h1 {
+            font-size: 2.5rem;
+        }
+        
+        .congrats .name {
+            font-size: 3rem;
+            color: #FFD700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        .congrats p {
+            font-size: 1.3rem;
+            color: white;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        
+        .gift-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+        
+        .flower-btn {
+            background-color: #32CD32;
+            margin-top: 40px;
+        }
+        
+        .flower {
+            position: fixed;
+            font-size: 2rem;
+            animation: fall 5s linear forwards;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .tab-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            transition: background 0.3s;
+        }
+        
+        .dot.active {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab-container" id="tabContainer">
+        <!-- Tab 1: Question 1 -->
+        <div class="tab">
+            <div class="tab-content">
+                <h1>Ты Алина?</h1>
+                <div class="buttons">
+                    <button class="btn-yes" onclick="nextTab()">Да</button>
+                    <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tab 2: Question 2 -->
+        <div class="tab">
+            <div class="tab-content">
+                <h1>Сегодня день рождения у тебя?</h1>
+                <div class="buttons">
+                    <button class="btn-yes" onclick="nextTab()">Да</button>
+                    <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tab 3: Question 3 -->
+        <div class="tab">
+            <div class="tab-content">
+                <h1>Ты ли на фото?</h1>
+                <img src="alina.jpg" alt="Фото" style="width: 250px; height: 250px; border-radius: 20px; margin: 20px 0; object-fit: cover; border: 4px solid white; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+                <div class="buttons">
+                    <button class="btn-yes" onclick="nextTab()">Да</button>
+                    <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tab 4: Video -->
+        <div class="tab">
+            <div class="tab-content">
+                <h1>Смотри видео!</h1>
+                <p style="color: white; margin-bottom: 20px;">Да да ты там есть )</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%;">
+                    <div style="width: 45%; max-width: 300px;">
+                        <video id="video1" controls style="width: 100%; border-radius: 15px;" preload="metadata" onended="checkVideos()">
+                            <source src="IMG_3074_final.mp4" type="video/mp4">
+                            <source src="IMG_3074.MOV" type="video/quicktime">
+                            Браузер не поддерживает видео
+                        </video>
+                    </div>
+                    <div style="width: 45%; max-width: 300px;">
+                        <video id="video2" controls style="width: 100%; border-radius: 15px;" preload="metadata" onended="checkVideos()">
+                            <source src="IMG_1731_final.mp4" type="video/mp4">
+                            Браузер не поддерживает видео
+                        </video>
+                    </div>
+                </div>
+                <div id="smiledQuestion" style="display: none; margin-top: 30px;">
+                    <h1>Улыбнулась ?</h1>
+                    <div class="buttons">
+                        <button class="btn-yes" onclick="nextTab()">Да</button>
+                        <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tab 5: Congratulations -->
+        <div class="tab">
+            <div class="tab-content congrats">
+                <div class="gift-icon">🎁</div>
+                <h1>С Днём Рождения!</h1>
+                <div class="name">Алина!</div>
+                <p>Алинка, знаю я тебе не долга, но понял одно ты умеешь удивлять))<br><br>хочу тебя поздравить с Днём рождения, да да твой день )<br><br>желать ничего тут не надо, а только сказать Алин добейся своих целей,<br>цени людей которые помогают тебе, а так же люби саму себя !!!!!<br><br>Ещё раз с днём рождения</p>
+                <button class="flower-btn" onclick="showFlowers()">Получить цветы 💐</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Error Overlay -->
+    <div class="error-overlay" id="errorOverlay">
+        <div class="error-box">
+            <h2>Ошибка!</h2>
+            <p id="errorMessage">Сообщение об ошибке</p>
+            <button onclick="hideError()">ОК</button>
+        </div>
+    </div>
+    
+    <!-- Tab Indicators -->
+    <div class="tab-indicator">
+        <div class="dot active" data-tab="0"></div>
+        <div class="dot" data-tab="1"></div>
+        <div class="dot" data-tab="2"></div>
+        <div class="dot" data-tab="3"></div>
+        <div class="dot" data-tab="4"></div>
+    </div>
+    
+    <script>
+        let currentTab = 0;
+        const totalTabs = 5;
+        
+        let video1Watched = false;
+        let video2Watched = false;
+        
+        function checkVideos() {
+            const video1 = document.getElementById('video1');
+            const video2 = document.getElementById('video2');
+            
+            if (video1.ended) video1Watched = true;
+            if (video2.ended) video2Watched = true;
+            
+            if (video1Watched && video2Watched) {
+                document.getElementById('smiledQuestion').style.display = 'block';
+            }
+        }
+        
+        function updateTabs() {
+            document.getElementById('tabContainer').style.transform = 
+                `translateX(-${currentTab * 100}vw)`;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentTab);
+            });
+            
+            // Auto show flowers on last tab
+            if (currentTab === 4) {
+                setTimeout(() => showFlowers(), 500);
+            }
+        }
+        
+        function nextTab() {
+            if (currentTab < totalTabs - 1) {
+                currentTab++;
+                updateTabs();
+            }
+        }
+        
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorOverlay').classList.add('show');
+        }
+        
+        function hideError() {
+            document.getElementById('errorOverlay').classList.remove('show');
+        }
+        
+        function showFlowers() {
+            const flowers = ['🌸', '🌺', '🌹', '🌻', '🌷', '💐', '✨', '💖'];
+            const colors = ['#FF69B4', '#FF1493', '#FFB6C1', '#FFD700', '#FF6347', '#DA70D6'];
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const flower = document.createElement('div');
+                    flower.className = 'flower';
+                    flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                    flower.style.left = Math.random() * 100 + 'vw';
+                    flower.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    flower.style.animationDuration = (3 + Math.random() * 3) + 's';
+                    document.body.appendChild(flower);
+                    
+                    setTimeout(() => {
+                        flower.remove();
+                    }, 6000);
+                }, i * 150);
+            }
+        }
+        
+        // Initialize
+        updateTabs();
+        
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+        updateTabs();
+    </script>
+</body>
+</html>
