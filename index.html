@@ -122,6 +122,41 @@
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
         
+        /* Маленькие фейерверки */
+        .fw {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+            animation: fw 1.5s ease-out forwards;
+        }
+        
+        @keyframes fw {
+            0% { transform: scale(0); opacity: 1; box-shadow: 0 0 10px currentColor; }
+            100% { transform: scale(4); opacity: 0; box-shadow: 0 0 20px currentColor; }
+        }
+        
+        /* Смайлики */
+        .emoji {
+            position: fixed;
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 5;
+            animation: emoji 3s ease-out forwards;
+            opacity: 0;
+        }
+        
+        @keyframes emoji {
+            0% { opacity: 1; transform: translateY(0) scale(0.5); }
+            50% { opacity: 1; transform: translateY(-30px) scale(1.2); }
+            100% { opacity: 0; transform: translateY(-100px) scale(1); }
+        }
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
         .dots {
             position: fixed;
             bottom: 30px;
@@ -279,6 +314,47 @@
         }
         
         function showFlowers() {
+            const f = ['🌸','🌺','🌹','🌻','🌷','💐','✨','💖'];
+            const c = ['#FF69B4','#FF1493','#FFB6C1','#FFD700','#FF6347'];
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const d = document.createElement('div');
+                    d.className = 'flower';
+                    d.textContent = f[Math.floor(Math.random() * f.length)];
+                    d.style.left = Math.random() * 100 + 'vw';
+                    d.style.color = c[Math.floor(Math.random() * c.length)];
+                    document.body.appendChild(d);
+                    setTimeout(() => d.remove(), 5000);
+                }, i * 150);
+            }
+            // Фейерверки
+            const colors = ['#FFD700', '#FF69B4', '#00FF00', '#00BFFF', '#FF4500'];
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const fw = document.createElement('div');
+                    fw.className = 'fw';
+                    fw.style.left = (10 + Math.random() * 80) + '%';
+                    fw.style.top = (10 + Math.random() * 40) + '%';
+                    fw.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    fw.style.color = fw.style.background;
+                    document.body.appendChild(fw);
+                    setTimeout(() => fw.remove(), 1500);
+                }, i * 200);
+            }
+            // Смайлики
+            const emojis = ['😊','😄','🥰','😍','🤗','💕','🎉','🎊'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const em = document.createElement('div');
+                    em.className = 'emoji';
+                    em.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    em.style.left = (Math.random() * 80 + 10) + '%';
+                    em.style.top = (60 + Math.random() * 30) + '%';
+                    document.body.appendChild(em);
+                    setTimeout(() => em.remove(), 3000);
+                }, i * 150);
+            }
+        }
             const f = ['🌸','🌺','🌹','🌻','🌷','💐','✨','💖'];
             const c = ['#FF69B4','#FF1493','#FFB6C1','#FFD700','#FF6347'];
             for (let i = 0; i < 30; i++) {
