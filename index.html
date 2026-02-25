@@ -131,6 +131,13 @@
         
         .video-wrapper video {
             width: 100%;
+            aspect-ratio: 9/16;
+            border-radius: 15px;
+            background: black;
+            object-fit: cover;
+            min-height: 200px;
+        }
+            width: 100%;
             border-radius: 15px;
             background: black;
         }
@@ -306,10 +313,10 @@
                 <h1>Смотри видео!</h1>
                 <p style="color: white; margin-bottom: 15px;">Да да ты там есть )</p>
                 <div class="video-wrapper">
-                    <video id="video1" controls playsinline preload="metadata" onended="checkVideos()">
+                    <video id="video1" controls playsinline preload="metadata" poster="poster1.jpg" onended="checkVideos()">
                         <source src="IMG_3074_final.mp4" type="video/mp4">
                     </video>
-                    <video id="video2" controls playsinline preload="metadata" onended="checkVideos()">
+                    <video id="video2" controls playsinline preload="metadata" poster="poster2.jpg" onended="checkVideos()">
                         <source src="IMG_1731_final.mp4" type="video/mp4">
                     </video>
                 </div>
