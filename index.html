@@ -178,6 +178,28 @@
             100% { opacity: 0; transform: translateY(-120px) scale(1); }
         }
         
+        /* Фейерверки */
+        .firework {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 400;
+            animation: fw 1s ease-out infinite;
+        }
+        
+        @keyframes fw {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+        
+        @media (max-width: 400px) {
+            0% { opacity: 1; transform: translateY(0) scale(0.5); }
+            50% { opacity: 1; transform: translateY(-40px) scale(1.2); }
+            100% { opacity: 0; transform: translateY(-120px) scale(1); }
+        }
+        
         @media (max-width: 400px) {
             h1 { font-size: 1.4rem; }
             .btn { padding: 14px 30px; font-size: 1.2rem; }
@@ -318,6 +340,34 @@
             }
             
             // Смайлики
+            const e = ['😊','😄','🥰','😍','🤗','💕','🎉','🎊','😎','🥳'];
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const em = document.createElement('div');
+                    em.className = 'emoji';
+                    em.textContent = e[Math.floor(Math.random() * e.length)];
+                    em.style.left = (Math.random() * 80 + 10) + '%';
+                    em.style.top = (50 + Math.random() * 40) + '%';
+                    document.body.appendChild(em);
+                    setTimeout(() => em.remove(), 3000);
+                }, i * 120);
+            }
+            
+            // Фейерверки
+            const colors = ['#FFD700', '#FF69B4', '#00FF00', '#00BFFF', '#FF4500', '#FF1493'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const fw = document.createElement('div');
+                    fw.className = 'firework';
+                    fw.style.left = (10 + Math.random() * 80) + '%';
+                    fw.style.top = (5 + Math.random() * 30) + '%';
+                    fw.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    fw.style.boxShadow = `0 0 10px ${fw.style.background}, 0 0 20px ${fw.style.background}`;
+                    document.body.appendChild(fw);
+                    setTimeout(() => fw.remove(), 1000);
+                }, i * 150);
+            }
+        }
             const e = ['😊','😄','🥰','😍','🤗','💕','🎉','🎊'];
             for (let i = 0; i < 25; i++) {
                 setTimeout(() => {
