@@ -29,8 +29,6 @@
             background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
-            padding-left: env(safe-area-inset-left);
-            padding-right: env(safe-area-inset-right);
         }
         
         .tab-container {
@@ -47,8 +45,6 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            padding-top: max(20px, env(safe-area-inset-top));
-            padding-bottom: max(20px, env(safe-area-inset-bottom));
             background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
         }
         
@@ -60,16 +56,6 @@
             justify-content: center;
             width: 100%;
             max-width: 600px;
-        }
-            min-height: 50vh;
-        }
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 100%;
         }
         
         h1 {
@@ -123,115 +109,23 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
         
-        .video-container {
-            width: 100%;
-            max-width: 500px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
-            padding: 10px;
-            text-align: center;
-        }
-        
-        .video-wrapper {
-            display: flex;
-            flex-direction: row;
-            gap: 8px;
-            width: 100%;
-            justify-content: center;
-            align-items: flex-start;
-        }
-        
-        .video-wrapper video {
-            width: 48%;
-            max-height: 45vh;
-            aspect-ratio: 9/16;
-            border-radius: 12px;
-            background: black;
-            object-fit: cover;
-        }
-        
-        @media (max-width: 600px) {
-            .video-wrapper video {
-                width: 48% !important;
-                max-height: 35vh;
-            }
-        }
-            display: flex;
-            flex-direction: row;
-            gap: 8px;
-            width: 100%;
-            justify-content: space-between;
-            padding: 0 5px;
-        }
-            display: flex;
-            flex-direction: row;
-            gap: 8px;
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .video-wrapper video {
-            width: 48%;
-            max-height: 45vh;
-            aspect-ratio: 9/16;
-            border-radius: 12px;
-            background: black;
-            object-fit: cover;
-        }
-            width: 100%;
-            max-width: 500px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
-            padding: 15px;
-            text-align: center;
-        }
-        
         .video-wrapper {
             display: flex;
             flex-direction: row;
             gap: 10px;
             width: 100%;
             justify-content: center;
+            align-items: flex-start;
+            padding: 0 10px;
         }
         
         .video-wrapper video {
             width: 48%;
+            max-height: 45vh;
             aspect-ratio: 9/16;
-            border-radius: 15px;
+            border-radius: 12px;
             background: black;
             object-fit: cover;
-        }
-        
-        @media (max-width: 600px) {
-            .video-wrapper video {
-                width: 48%;
-                max-height: 35vh;
-            }
-        }
-            .video-wrapper {
-                flex-direction: column;
-            }
-            .video-wrapper video {
-                width: 100%;
-            }
-        }
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-        }
-        
-        }
-            width: 100%;
-            aspect-ratio: 9/16;
-            border-radius: 15px;
-            background: black;
-            object-fit: cover;
-            min-height: 200px;
-        }
-            width: 100%;
-            border-radius: 15px;
-            background: black;
         }
         
         .congrats {
@@ -352,20 +246,21 @@
             font-size: 1rem;
         }
         
-        @media (max-width: 400px) {
-            .buttons {
-                flex-direction: column;
-                align-items: center;
+        @media (max-width: 500px) {
+            .video-wrapper {
+                gap: 6px;
+                padding: 0 5px;
             }
-            button {
-                width: 80%;
+            .video-wrapper video {
+                width: 48%;
+                max-height: 40vh;
+                border-radius: 8px;
             }
         }
     </style>
 </head>
 <body>
     <div class="tab-container" id="tabContainer">
-        <!-- Tab 1 -->
         <div class="tab">
             <div class="tab-content">
                 <h1>Ты Алина?</h1>
@@ -376,7 +271,6 @@
             </div>
         </div>
         
-        <!-- Tab 2 -->
         <div class="tab">
             <div class="tab-content">
                 <h1>Сегодня день рождения у тебя?</h1>
@@ -387,7 +281,6 @@
             </div>
         </div>
         
-        <!-- Tab 3 -->
         <div class="tab">
             <div class="tab-content">
                 <h1>Ты ли на фото?</h1>
@@ -399,7 +292,6 @@
             </div>
         </div>
         
-        <!-- Tab 4 -->
         <div class="tab">
             <div class="tab-content">
                 <h1>Смотри видео!</h1>
@@ -422,7 +314,6 @@
             </div>
         </div>
         
-        <!-- Tab 5 -->
         <div class="tab">
             <div class="tab-content congrats">
                 <div class="gift-icon">🎁</div>
@@ -441,7 +332,6 @@
         </div>
     </div>
     
-    <!-- Error Overlay -->
     <div class="error-overlay" id="errorOverlay">
         <div class="error-box">
             <h2>Ошибка!</h2>
@@ -450,7 +340,6 @@
         </div>
     </div>
     
-    <!-- Tab Indicators -->
     <div class="tab-indicator">
         <div class="dot active" data-tab="0"></div>
         <div class="dot" data-tab="1"></div>
