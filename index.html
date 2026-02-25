@@ -51,9 +51,28 @@
         .btn-group {
             display: flex;
             gap: 25px;
+            position: relative;
+            z-index: 1000;
+        }
+            display: flex;
+            gap: 25px;
         }
         
         .btn {
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            z-index: 1000;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
             font-size: 1.4rem;
             font-weight: bold;
             padding: 18px 45px;
