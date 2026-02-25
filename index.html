@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#FF69B4">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -10,36 +10,45 @@
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="alina.jpg">
     <title>С Днём Рождения, Алина!</title>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С Днём Рождения, Алина!</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            touch-action: manipulation;
         }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            overflow: hidden;
+            background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
         }
         
         .tab-container {
             display: flex;
-            transition: transform 0.3s ease;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .tab {
             min-width: 100vw;
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            padding-top: max(20px, env(safe-area-inset-top));
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
             background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%);
         }
         
@@ -48,35 +57,42 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 100%;
         }
         
         h1 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 7vw, 2rem);
             color: white;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            padding: 0 10px;
         }
         
         .buttons {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 0 20px;
         }
         
         button {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 5vw, 1.5rem);
             font-weight: bold;
-            padding: 20px 50px;
+            padding: 18px 40px;
             border: none;
             border-radius: 15px;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
             color: white;
+            min-width: 120px;
         }
         
-        button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        button:active {
+            transform: scale(0.95);
         }
         
         .btn-yes {
@@ -87,44 +103,14 @@
             background-color: #FF4500;
         }
         
-        .error-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .error-overlay.show {
-            display: flex;
-        }
-        
-        .error-box {
-            background: white;
-            padding: 30px;
+        .photo {
+            width: min(250px, 70vw);
+            height: min(250px, 70vw);
             border-radius: 20px;
-            text-align: center;
-            max-width: 400px;
-        }
-        
-        .error-box h2 {
-            color: #FF4500;
-            margin-bottom: 15px;
-        }
-        
-        .error-box p {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        .error-box button {
-            background-color: #FF69B4;
-            padding: 10px 30px;
+            margin: 15px 0;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
         
         .video-container {
@@ -132,39 +118,55 @@
             max-width: 500px;
             background: rgba(255,255,255,0.2);
             border-radius: 20px;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
+        }
+        
+        .video-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+        
+        .video-wrapper video {
+            width: 100%;
+            border-radius: 15px;
+            background: black;
         }
         
         .congrats {
             text-align: center;
+            padding: 0 15px;
         }
         
         .congrats h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 8vw, 2.5rem);
         }
         
         .congrats .name {
-            font-size: 3rem;
+            font-size: clamp(2rem, 10vw, 3rem);
             color: #FFD700;
             text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin: 10px 0;
         }
         
         .congrats p {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 4vw, 1.3rem);
             color: white;
             margin-top: 20px;
             line-height: 1.6;
+            white-space: pre-line;
         }
         
         .gift-icon {
-            font-size: 5rem;
-            margin-bottom: 20px;
+            font-size: clamp(3rem, 15vw, 5rem);
+            margin-bottom: 15px;
         }
         
         .flower-btn {
             background-color: #32CD32;
-            margin-top: 40px;
+            margin-top: 30px;
         }
         
         .flower {
@@ -188,7 +190,7 @@
         
         .tab-indicator {
             position: fixed;
-            bottom: 20px;
+            bottom: max(20px, env(safe-area-inset-bottom));
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -207,11 +209,64 @@
         .dot.active {
             background: white;
         }
+        
+        .error-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .error-overlay.show {
+            display: flex;
+        }
+        
+        .error-box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+        
+        .error-box h2 {
+            color: #FF4500;
+            margin-bottom: 15px;
+        }
+        
+        .error-box p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .error-box button {
+            background-color: #FF69B4;
+            padding: 12px 30px;
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 400px) {
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            button {
+                width: 80%;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="tab-container" id="tabContainer">
-        <!-- Tab 1: Question 1 -->
+        <!-- Tab 1 -->
         <div class="tab">
             <div class="tab-content">
                 <h1>Ты Алина?</h1>
@@ -222,7 +277,7 @@
             </div>
         </div>
         
-        <!-- Tab 2: Question 2 -->
+        <!-- Tab 2 -->
         <div class="tab">
             <div class="tab-content">
                 <h1>Сегодня день рождения у тебя?</h1>
@@ -233,11 +288,11 @@
             </div>
         </div>
         
-        <!-- Tab 3: Question 3 -->
+        <!-- Tab 3 -->
         <div class="tab">
             <div class="tab-content">
                 <h1>Ты ли на фото?</h1>
-                <img src="alina.jpg" alt="Фото" style="width: 250px; height: 250px; border-radius: 20px; margin: 20px 0; object-fit: cover; border: 4px solid white; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+                <img src="alina.jpg" alt="Фото" class="photo">
                 <div class="buttons">
                     <button class="btn-yes" onclick="nextTab()">Да</button>
                     <button class="btn-no" onclick="showError('Подумай!!!???')">Нет</button>
@@ -245,27 +300,20 @@
             </div>
         </div>
         
-        <!-- Tab 4: Video -->
+        <!-- Tab 4 -->
         <div class="tab">
             <div class="tab-content">
                 <h1>Смотри видео!</h1>
-                <p style="color: white; margin-bottom: 20px;">Да да ты там есть )</p>
-                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; width: 100%;">
-                    <div style="width: 45%; max-width: 300px;">
-                        <video id="video1" controls style="width: 100%; border-radius: 15px;" preload="metadata" onended="checkVideos()">
-                            <source src="IMG_3074_final.mp4" type="video/mp4">
-                            <source src="IMG_3074.MOV" type="video/quicktime">
-                            Браузер не поддерживает видео
-                        </video>
-                    </div>
-                    <div style="width: 45%; max-width: 300px;">
-                        <video id="video2" controls style="width: 100%; border-radius: 15px;" preload="metadata" onended="checkVideos()">
-                            <source src="IMG_1731_final.mp4" type="video/mp4">
-                            Браузер не поддерживает видео
-                        </video>
-                    </div>
+                <p style="color: white; margin-bottom: 15px;">Да да ты там есть )</p>
+                <div class="video-wrapper">
+                    <video id="video1" controls playsinline preload="metadata" onended="checkVideos()">
+                        <source src="IMG_3074_final.mp4" type="video/mp4">
+                    </video>
+                    <video id="video2" controls playsinline preload="metadata" onended="checkVideos()">
+                        <source src="IMG_1731_final.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <div id="smiledQuestion" style="display: none; margin-top: 30px;">
+                <div id="smiledQuestion" style="display: none; margin-top: 20px;">
                     <h1>Улыбнулась ?</h1>
                     <div class="buttons">
                         <button class="btn-yes" onclick="nextTab()">Да</button>
@@ -275,13 +323,20 @@
             </div>
         </div>
         
-        <!-- Tab 5: Congratulations -->
+        <!-- Tab 5 -->
         <div class="tab">
             <div class="tab-content congrats">
                 <div class="gift-icon">🎁</div>
                 <h1>С Днём Рождения!</h1>
                 <div class="name">Алина!</div>
-                <p>Алинка, знаю я тебе не долга, но понял одно ты умеешь удивлять))<br><br>хочу тебя поздравить с Днём рождения, да да твой день )<br><br>желать ничего тут не надо, а только сказать Алин добейся своих целей,<br>цени людей которые помогают тебе, а так же люби саму себя !!!!!<br><br>Ещё раз с днём рождения</p>
+                <p>Алинка, знаю я тебе не долга, но понял одно ты умеешь удивлять))
+
+хочу тебя поздравить с Днём рождения, да да твой день )
+
+желать ничего тут не надо, а только сказать Алин добейся своих целей, 
+цени людей которые помогают тебе, а так же люби саму себя !!!!
+
+Ещё раз с днём рождения</p>
                 <button class="flower-btn" onclick="showFlowers()">Получить цветы 💐</button>
             </div>
         </div>
@@ -291,7 +346,7 @@
     <div class="error-overlay" id="errorOverlay">
         <div class="error-box">
             <h2>Ошибка!</h2>
-            <p id="errorMessage">Сообщение об ошибке</p>
+            <p id="errorMessage"></p>
             <button onclick="hideError()">ОК</button>
         </div>
     </div>
@@ -328,12 +383,10 @@
             document.getElementById('tabContainer').style.transform = 
                 `translateX(-${currentTab * 100}vw)`;
             
-            // Update dots
             document.querySelectorAll('.dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentTab);
             });
             
-            // Auto show flowers on last tab
             if (currentTab === 4) {
                 setTimeout(() => showFlowers(), 500);
             }
@@ -376,14 +429,11 @@
             }
         }
         
-        // Initialize
         updateTabs();
         
-        // Register Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js');
         }
-        updateTabs();
     </script>
 </body>
 </html>
