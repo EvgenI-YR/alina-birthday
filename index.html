@@ -51,11 +51,6 @@
         .btn-group {
             display: flex;
             gap: 25px;
-            position: relative;
-            z-index: 1000;
-        }
-            display: flex;
-            gap: 25px;
         }
         
         .btn {
@@ -67,33 +62,11 @@
             color: white;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-            z-index: 1000;
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-            font-size: 1.4rem;
-            font-weight: bold;
-            padding: 18px 45px;
-            border: none;
-            border-radius: 50px;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .btn:active {
-            transform: scale(0.95);
         }
         
         .btn-yes { background: linear-gradient(135deg, #32CD32, #228B22); }
         .btn-no { background: linear-gradient(135deg, #FF4500, #DC143C); }
-        .btn-flower { 
-            background: linear-gradient(135deg, #32CD32, #228B22);
-            margin-top: 30px;
-        }
+        .btn-flower { background: linear-gradient(135deg, #32CD32, #228B22); margin-top: 30px; }
         
         .photo {
             width: 200px;
@@ -164,11 +137,7 @@
         
         .error-box h2 { color: #FF4500; margin-bottom: 15px; }
         .error-box p { color: #333; margin-bottom: 20px; }
-        .error-box button { 
-            background: linear-gradient(135deg, #FF69B4, #FF1493); 
-            padding: 12px 30px;
-            font-size: 1rem;
-        }
+        .error-box button { background: linear-gradient(135deg, #FF69B4, #FF1493); padding: 12px 30px; font-size: 1rem; }
         
         .flower {
             position: fixed;
@@ -197,7 +166,6 @@
             100% { opacity: 0; transform: translateY(-120px) scale(1); }
         }
         
-        /* Фейерверки */
         .firework {
             position: fixed;
             width: 6px;
@@ -214,12 +182,6 @@
         }
         
         @media (max-width: 400px) {
-            0% { opacity: 1; transform: translateY(0) scale(0.5); }
-            50% { opacity: 1; transform: translateY(-40px) scale(1.2); }
-            100% { opacity: 0; transform: translateY(-120px) scale(1); }
-        }
-        
-        @media (max-width: 400px) {
             h1 { font-size: 1.4rem; }
             .btn { padding: 14px 30px; font-size: 1.2rem; }
             .photo { width: 160px; height: 160px; }
@@ -230,56 +192,51 @@
 </head>
 <body>
     <div class="container" id="container">
-        <!-- Tab 1 -->
         <div class="tab">
             <h1>Ты Алина?</h1>
             <div class="btn-group">
-                <button class="btn btn-yes" onclick="nextTab()">Да</button>
-                <button class="btn btn-no" onclick="showErr('Подумай!!!???')">Нет</button>
+                <button class="btn btn-yes" id="btn1">Да</button>
+                <button class="btn btn-no" id="btn2">Нет</button>
             </div>
         </div>
         
-        <!-- Tab 2 -->
         <div class="tab">
             <h1>Сегодня день рождения у тебя?</h1>
             <div class="btn-group">
-                <button class="btn btn-yes" onclick="nextTab()">Да</button>
-                <button class="btn btn-no" onclick="showErr('Подумай!!!???')">Нет</button>
+                <button class="btn btn-yes" id="btn3">Да</button>
+                <button class="btn btn-no" id="btn4">Нет</button>
             </div>
         </div>
         
-        <!-- Tab 3 -->
         <div class="tab">
             <h1>Ты ли на фото?</h1>
             <img src="alina.jpg" class="photo">
             <div class="btn-group">
-                <button class="btn btn-yes" onclick="nextTab()">Да</button>
-                <button class="btn btn-no" onclick="showErr('Подумай!!!???')">Нет</button>
+                <button class="btn btn-yes" id="btn5">Да</button>
+                <button class="btn btn-no" id="btn6">Нет</button>
             </div>
         </div>
         
-        <!-- Tab 4 -->
         <div class="tab">
             <h1>Смотри видео!</h1>
             <p style="margin-bottom:15px;opacity:0.9;">Да да ты там есть )</p>
             <div class="video-box">
-                <video id="v1" controls playsinline poster="poster1.jpg" onended="checkV1()">
+                <video id="v1" controls playsinline poster="poster1.jpg">
                     <source src="IMG_3074_final.mp4" type="video/mp4">
                 </video>
-                <video id="v2" controls playsinline poster="poster2.jpg" onended="checkV2()">
+                <video id="v2" controls playsinline poster="poster2.jpg">
                     <source src="IMG_1731_final.mp4" type="video/mp4">
                 </video>
             </div>
             <div id="smileBox" style="display:none;margin-top:25px;">
                 <h1>Улыбнулась ?</h1>
                 <div class="btn-group">
-                    <button class="btn btn-yes" onclick="nextTab()">Да</button>
-                    <button class="btn btn-no" onclick="showErr('Подумай!!!???')">Нет</button>
+                    <button class="btn btn-yes" id="btn7">Да</button>
+                    <button class="btn btn-no" id="btn8">Нет</button>
                 </div>
             </div>
         </div>
         
-        <!-- Tab 5 -->
         <div class="tab">
             <div class="gift-icon">🎁</div>
             <h1>С Днём Рождения!</h1>
@@ -292,7 +249,7 @@
 цени людей которые помогают тебе, а так же люби саму себя !!!!
 
 Ещё раз с днём рождения</div>
-            <button class="btn btn-flower" onclick="showFX()">Получить цветы 💐</button>
+            <button class="btn btn-flower" id="btnFlower">Получить цветы 💐</button>
         </div>
     </div>
     
@@ -304,11 +261,11 @@
         <div class="dot"></div>
     </div>
     
-    <div class="error-bg" id="errorBg" onclick="hideErr()">
-        <div class="error-box" onclick="event.stopPropagation()">
+    <div class="error-bg" id="errorBg">
+        <div class="error-box">
             <h2>Ошибка!</h2>
             <p id="errMsg"></p>
-            <button class="btn" onclick="hideErr()">ОК</button>
+            <button class="btn" id="btnOk">ОК</button>
         </div>
     </div>
     
@@ -316,8 +273,8 @@
         let tab = 0;
         let v1Done = false, v2Done = false;
         
-        function checkV1() { v1Done = true; checkBoth(); }
-        function checkV2() { v2Done = true; checkBoth(); }
+        document.getElementById('v1').addEventListener('ended', function() { v1Done = true; checkBoth(); });
+        document.getElementById('v2').addEventListener('ended', function() { v2Done = true; checkBoth(); });
         
         function checkBoth() {
             if (v1Done && v2Done) document.getElementById('smileBox').style.display = 'block';
@@ -342,8 +299,18 @@
             document.getElementById('errorBg').classList.remove('show');
         }
         
+        document.getElementById('btn1').addEventListener('click', nextTab);
+        document.getElementById('btn2').addEventListener('click', function() { showErr('Подумай!!!???'); });
+        document.getElementById('btn3').addEventListener('click', nextTab);
+        document.getElementById('btn4').addEventListener('click', function() { showErr('Подумай!!!???'); });
+        document.getElementById('btn5').addEventListener('click', nextTab);
+        document.getElementById('btn6').addEventListener('click', function() { showErr('Подумай!!!???'); });
+        document.getElementById('btn7').addEventListener('click', nextTab);
+        document.getElementById('btn8').addEventListener('click', function() { showErr('Подумай!!!???'); });
+        document.getElementById('btnFlower').addEventListener('click', showFX);
+        document.getElementById('btnOk').addEventListener('click', hideErr);
+        
         function showFX() {
-            // Цветы
             const f = ['🌸','🌺','🌹','🌻','🌷','💐','✨','💖'];
             const c = ['#FF69B4','#FF1493','#FFB6C1','#FFD700','#FF6347'];
             for (let i = 0; i < 40; i++) {
@@ -358,7 +325,6 @@
                 }, i * 100);
             }
             
-            // Смайлики
             const e = ['😊','😄','🥰','😍','🤗','💕','🎉','🎊','😎','🥳'];
             for (let i = 0; i < 25; i++) {
                 setTimeout(() => {
@@ -372,7 +338,6 @@
                 }, i * 120);
             }
             
-            // Фейерверки
             const colors = ['#FFD700', '#FF69B4', '#00FF00', '#00BFFF', '#FF4500', '#FF1493'];
             for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
@@ -385,19 +350,6 @@
                     document.body.appendChild(fw);
                     setTimeout(() => fw.remove(), 1000);
                 }, i * 150);
-            }
-        }
-            const e = ['😊','😄','🥰','😍','🤗','💕','🎉','🎊'];
-            for (let i = 0; i < 25; i++) {
-                setTimeout(() => {
-                    const em = document.createElement('div');
-                    em.className = 'emoji';
-                    em.textContent = e[Math.floor(Math.random() * e.length)];
-                    em.style.left = (Math.random() * 80 + 10) + '%';
-                    em.style.top = (50 + Math.random() * 40) + '%';
-                    document.body.appendChild(em);
-                    setTimeout(() => em.remove(), 3000);
-                }, i * 120);
             }
         }
         
